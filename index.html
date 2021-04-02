@@ -41,7 +41,7 @@
                     <button ng-click="vm.previous()" id="prev-button" ng-disabled="vm.index === 0;">Previous</button>
                     <input id="input-artist" type="text" ng-model="vm.songs[vm.index].userInput.artist" placeholder="Artiste" autofocus/>
                     <input id="input-song" type="text" ng-model="vm.songs[vm.index].userInput.song" placeholder="Titre"/>
-                    <button ng-click="vm.next()" id="next-button">{{ vm.index >= vm.songs.length-1 ? "Finnish":"Next" }}</button>
+                    <button ng-click="vm.next()" id="next-button">{{ vm.index >= vm.songs.length-1 ? "Finish":"Next" }}</button>
                 </div>
             </div>
             <!-- Ending page-->
