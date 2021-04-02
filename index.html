@@ -46,9 +46,13 @@
             </div>
             <!-- Ending page-->
             <div ng-if="vm.index >= vm.songs.length">
-                Le test est fini.
+                Le test est fini, voici vos réponses:
+                <br />
                 <pre id="result">{{vm.getReponses()}}</pre>
-                <button ng-click="vm.clipboard()">Copy to clipboard</button>
+                <br />
+                <button ng-click="vm.clipboard()">Copier les réponses</button>
+                <br />
+                Copiez vos réponses, et envoyez-les moi par email.
             </div>
         </div>
       </div>
