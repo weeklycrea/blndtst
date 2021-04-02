@@ -1,0 +1,57 @@
+<!doctype html>
+<html ng-app="app">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="app.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <div class="grid-container" ng-controller="BlindTest as vm"> 
+        <div class="header">
+            <p>Blind Test Creature</p>
+        </div>
+        <div class="sidebar">
+            <div class="top-sidebar"></div>
+            <ul>
+                <li ng-repeat="song in vm.songs" ng-class="{active: vm.index === $index, inactive: vm.maxIndex < $index}" ng-click="vm.setIndex($index)">
+                    <span>Audio n°{{$index+1}}</a>
+                </li>
+            </ul>
+        </div>
+        <div class="main">
+            <!-- Progress Bar-->
+            <div class="progress">
+                <div class="determinate" style="width: {{100 * vm.index / vm.songs.length}}%"></div>
+            </div>
+            <div class="content2" ng-if="vm.index < vm.songs.length">
+                <!-- Audio Player-->
+                <div class="title">
+                    <h3>Audio n°{{vm.index+1}}</h3>
+                </div>
+
+                <div class="imgctnr">
+                    <img ng-src="{{vm.songs[vm.index].img}}" class="img">
+                </div>
+                <div class="player">
+                    <audio autoplay controls data-ng-src="{{vm.songs[vm.index].file}}"></audio>
+                </div>
+                <!-- User Input-->
+                <div class="userinput">
+                    <button ng-click="vm.previous()" id="prev-button" ng-disabled="vm.index === 0;">Previous</button>
+                    <input id="input-artist" type="text" ng-model="vm.songs[vm.index].userInput.artist" placeholder="Artiste" autofocus/>
+                    <input id="input-song" type="text" ng-model="vm.songs[vm.index].userInput.song" placeholder="Titre"/>
+                    <button ng-click="vm.next()" id="next-button">{{ vm.index >= vm.songs.length-1 ? "Finnish":"Next" }}</button>
+                </div>
+            </div>
+            <!-- Ending page-->
+            <div ng-if="vm.index >= vm.songs.length">
+                Le test est fini.
+                <pre id="result">{{vm.getReponses()}}</pre>
+                <button ng-click="vm.clipboard()">Copy to clipboard</button>
+            </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
